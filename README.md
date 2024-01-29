@@ -8,6 +8,7 @@
 ## Технологии
 - .NET 8.0
 - ASP.NET webapi
+- EPPlus
 - EntityFramework
 - MediatR
 - PostgreSQL
