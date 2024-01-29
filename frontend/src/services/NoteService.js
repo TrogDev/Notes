@@ -36,6 +36,15 @@ const NoteService = {
                 Authorization: `Bearer ${store.state.accessToken}`
             }
         })
+    },
+    async export() {
+        const response = await axios.get("/api/notes/export", {
+            headers: {
+                Authorization: `Bearer ${store.state.accessToken}`
+            },
+            responseType: "arraybuffer"
+        })
+        return response
     }
 }
 

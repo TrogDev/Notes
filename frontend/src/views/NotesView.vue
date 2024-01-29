@@ -1,6 +1,7 @@
 <template>
     <ApplicationHeader />
     <main>
+        <primary-button class="export-button" @click="exportNotes">Скачать в Excel</primary-button>
         <div class="notes container">
             <NoteCreateForm @created="setNotes" />
             <NoteCard v-for="note in notes" :key="note.id" :note="note" @updated="setNotes" />
@@ -12,11 +13,18 @@
 main {
     margin-top: 25px;
 }
+
 .notes {
     display: flex;
     gap: 15px;
     flex-wrap: wrap;
     justify-content: center;
+    margin-top: 15px;
+}
+
+.export-button {
+    margin: auto;
+    display: block;
 }
 </style>
 
@@ -41,6 +49,14 @@ export default {
     methods: {
         async setNotes() {
             this.notes = await NoteService.getList()
+        },
+        async exportNotes() {
+            const response = await NoteService.export()
+            let blob = new Blob([response.data])
+            let link = document.createElement('a')
+            link.href = window.URL.createObjectURL(blob)
+            link.download = 'Notes.xls'
+            link.click()
         }
     },
     components: {
