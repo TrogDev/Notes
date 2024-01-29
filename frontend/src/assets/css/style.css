@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;400;500;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+    --primary: #F4DAA7;
+    --background: #1E1E1E;
+    --window-background: #252526;
+    --field-background: #333333;
+    --text-color: #FFFFFF;
+    --additional-text-color: #949494;
+    --error: #ED3D3D;
+}
+
+.container {
+    width: 90%;
+    margin: auto;
+}
+
+body {
+    font-family: 'Source Code Pro', monospace;
+    background-color: #1E1E1E;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.auth-from__input-wrapper {
+    width: 100%;
+}
+
+.auth-from__input-wrapper>input {
+    width: 100%;
+}
+
+.auth-form__error {
+    font-size: 12px;
+    color: var(--error);
+    margin-top: 3px;
+    white-space: pre-line;
+}

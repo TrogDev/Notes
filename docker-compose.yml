@@ -1,0 +1,43 @@
+version: "3.8"
+services:
+  nginx:
+    build: ./nginx
+    restart: always
+    ports:
+      - 80:80
+    depends_on:
+      - backend
+      - frontend
+    volumes:
+      - frontend_volume:/app/frontend/dist
+  backend:
+    build: ./backend
+    restart: always
+    command: dotnet Notes.Web.Api.dll
+    depends_on:
+      db:
+        condition: service_healthy
+    expose:
+      - 8080
+  frontend:
+    build: ./frontend
+    restart: always
+    volumes:
+      - frontend_volume:/app/frontend/dist
+  db:
+    image: postgres:15.1
+    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=notes
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-d", "db_prod"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+volumes:
+  postgres_data:
+  frontend_volume:
