@@ -1,5 +1,5 @@
 # Notes
-Тестовое задание, сайт для заметок (Авторизация, CRUD, экспорт в Excel). Можно протестировать на сервере: http://daisu.ru
+Тестовое задание, сайт для заметок (Авторизация, CRUD, экспорт в Excel).
 
 ## Содержание
 - [Технологии](#технологии)
@@ -10,6 +10,7 @@
 - ASP.NET webapi
 - EPPlus
 - EntityFramework
+- Identity
 - MediatR
 - PostgreSQL
 - Vue.js
